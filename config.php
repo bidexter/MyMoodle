@@ -3,11 +3,11 @@
 unset($CFG);
 global $CFG;
 $CFG = new stdClass();
-
+#$release  = '4.1.2+ (Build: 20230401)';
 $CFG->dbtype    = 'mariadb';
 $CFG->dblibrary = 'native';
 $CFG->dbhost    = 'localhost';
-$CFG->dbname    = 'test';
+$CFG->dbname    = 'moodle412';
 $CFG->dbuser    = 'root';
 $CFG->dbpass    = '';
 $CFG->prefix    = 'mdl_';
@@ -23,6 +23,13 @@ $CFG->dataroot  = 'C:\\xampp\\phpMyAdmin\\moodledata';
 $CFG->admin     = 'admin';
 
 $CFG->directorypermissions = 0777;
+
+#$CFG->cachejs = false;
+$CFG->showcrondebugging = true;
+#$CFG->langstringcache = false;
+@ini_set('display_errors', '1');         // NOT FOR PRODUCTION SERVERS!
+$CFG->debug = (E_ALL | E_STRICT);   // === DEBUG_DEVELOPER - NOT FOR PRODUCTION SERVERS!
+$CFG->debugdisplay = 1; 
 
 require_once(__DIR__ . '/lib/setup.php');
 

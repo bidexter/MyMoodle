@@ -31,6 +31,10 @@
     width: 400px;
     height: 260px;
 }
+#vpl_ide_dialog_rts {
+    width: 400px;
+    height: 260px;
+}
 #vpl_menu .ui-button-text-only,
 #vpl_menu .ui-button-text {
     padding: 0.4em;

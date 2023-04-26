@@ -344,6 +344,10 @@ class vpl_editor_util {
                 'selectbreakpoint',
                 'removebreakpoint',
                 'maxpostsizeexceeded',
+                'go_rts_on',
+                'go_rts_off',
+                'rts',
+                'realtimesubmission',
         );
         $words = array (
                 'cancel',
@@ -396,3 +400,5 @@ class vpl_editor_util {
         <?php
     }
 }
+
+

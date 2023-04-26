@@ -609,10 +609,12 @@ define(
                 'graphic': 'picture-o',
                 'send': 'send',
                 'theme':  'paint-brush',
-                'user': 'user',
+                'user': 'user-o',
                 'fontsize': 'text-height',
                 'close-rightpanel': 'caret-square-o-right',
-                'open-rightpanel': 'caret-square-o-left'
+                'open-rightpanel': 'caret-square-o-left',
+                'rts-on': 'users',
+                'rts-off': 'user'
             };
             VPLUtil.genIcon = function(icon, size) {
                 if (!menuIcons[icon]) {

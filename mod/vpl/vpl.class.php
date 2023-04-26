@@ -1518,6 +1518,8 @@ class mod_vpl {
                     $maintabs[] = new tabobject( $tabname, $href, $text, $text );
                 }
             }
+            $href = vpl_mod_href( 'forms/realtimesubmission.php', 'id', $cmid );
+            $maintabs[] = vpl_create_tabobject( 'realtimesubmission.php', $href, 'realtimesubmission' );
         }
         switch ($active) {
             case 'view.php' :
@@ -1590,6 +1592,8 @@ class mod_vpl {
                             ), $active );
                     return;
                 } else {
+                    $href = vpl_mod_href( 'forms/realtimesubmission.php', 'id', $cmid );
+                    $tabs[] = vpl_create_tabobject( 'realtimesubmission.php', $href, 'realtimesubmission' );
                     print_tabs( array (
                             $tabs
                     ), $active );
@@ -1623,6 +1627,32 @@ class mod_vpl {
                         $tabs
                 ), $active );
                 break;
+            case 'realtimesubmission.php':
+#                $href = vpl_mod_href( 'forms/realtimesubmission.php', 'id', $cmid );
+#                $maintabs[] = vpl_create_tabobject( 'realtimesubmission.php', $href, 'realtimesubmission' );
+                if ($level2) {
+                    print_tabs(
+                            array (
+                                    $maintabs,
+                                    $tabs
+                            ), $active );
+                    return;
+                } else {   
+                    $tabs[] = $viewtab;
+                    $href = vpl_mod_href( 'forms/submission.php', 'id', $cmid, 'userid', $userid );
+                    $tabs[] = vpl_create_tabobject( 'submission.php', $href, 'submission' );                 
+                    $href = vpl_mod_href( 'forms/edit.php', 'id', $cmid, 'userid', $userid );
+                    $stredit = 'edit';
+                    $href = vpl_mod_href( 'forms/submissionview.php', 'id', $cmid, 'userid', $userid );
+                    $tabs[] = vpl_create_tabobject( 'submissionview.php', $href, 'submissionview');
+                    $href = vpl_mod_href( 'forms/realtimesubmission.php', 'id', $cmid );
+                    $tabs[] = vpl_create_tabobject( 'realtimesubmission.php', $href, 'realtimesubmission' );
+                    print_tabs( array (
+                            $tabs
+                    ), $active );
+                    return;
+                }
+                return;          
         }
     }
 

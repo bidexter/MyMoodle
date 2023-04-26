@@ -625,6 +625,9 @@ function mod_vpl_get_fontawesome_icon_map() {
             'mod_vpl:cancel' => 'fa-remove',
             'mod_vpl:delete' => 'fa-trash',
             'mod_vpl:editthis' => 'fa-edit',
+            'mod_vpl:realtimesubmission' => 'fa-handshake-o',
+            'mod_vpl:rts-on' => 'fa-users',
+            'mod_vpl:rts-off' => 'fa-user'
     ];
 }
 

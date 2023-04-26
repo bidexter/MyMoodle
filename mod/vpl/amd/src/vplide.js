@@ -1532,16 +1532,12 @@ define(
                         $('body').removeClass('vpl_body_fullscreen');
                         menuButtons.setText('fullscreen', 'fullscreen');
                         $(tags).show();
-                        $('#vpl_ide_user').hide();
                         fullScreen = false;
                     } else {
                         $('body').addClass('vpl_body_fullscreen').scrollTop(0);
                         $(tags).hide();
                         rootObj.addClass('vpl_ide_root_fullscreen');
                         menuButtons.setText('fullscreen', 'regularscreen');
-                        if (options.username) {
-                            $('#vpl_ide_user').show();
-                        }
                         fullScreen = true;
                     }
                     focusCurrentFile();
@@ -1750,6 +1746,28 @@ define(
                 }
             });
             menuButtons.add({
+                name: 'rts',
+                icon: 'rts-off',
+                originalAction: function() {
+                    var tag = $('#vpl_ide_rts_tag');
+                    if (tag.is(":visible")) {
+                        menuButtons.setText("rts", 'rts-off', VPLUtil.str('go_rts_on'));
+                        if (options.username) {
+                            $('#vpl_ide_user').hide();
+                        }
+                        tag.hide();
+                    } else {
+                        menuButtons.setText("rts", 'rts-on', VPLUtil.str('go_rts_off'));
+                        if (options.username) {
+                            $('#vpl_ide_user').show();
+                        }
+                        tag.show();
+                    }
+                    VPLUtil.delay('updateMenu', updateMenu);
+                    VPLUtil.delay('autoResizeTab', autoResizeTab);
+                }
+            });
+            menuButtons.add({
                 name: 'rightpanel',
                 icon: 'close-rightpanel',
                 originalAction: function() {
@@ -1819,7 +1837,10 @@ define(
             menuHtml += "</span> ";
             menuHtml += menuButtons.getHTML('fullscreen') + ' ';
             menuHtml += menuButtons.getHTML('about') + ' ';
+            menuHtml += menuButtons.getHTML('rts');
+            menuHtml += "<span id='vpl_ide_rts_tag'>";
             menuHtml += menuButtons.getHTML('user') + ' ';
+            menuHtml += "</span> ";
             menuHtml += menuButtons.getHTML('timeleft');
             menuHtml += '<div class="clearfix"></div>';
             menu.append(menuHtml);
@@ -1832,11 +1853,13 @@ define(
             $('#vpl_ide_fullscreen').button();
             $('#vpl_ide_acetheme').button();
             $('#vpl_ide_about').button();
-            $('#vpl_ide_user').button().css('float', 'right').hide();
+            $('#vpl_ide_rts').button();
+            $('#vpl_ide_rts_tag').hide();
+            $('#vpl_ide_user').button().css('float', 'right');
             $('#vpl_ide_timeleft').button().css('float', 'right').hide();
             $('#vpl_menu .ui-button').css('padding', '6px');
             $('#vpl_menu .ui-button-text').css('padding', '0');
-            var alwaysActive = ['filelist', 'more', 'fullscreen', 'about', 'resetfiles',
+            var alwaysActive = ['filelist', 'more', 'fullscreen', 'about', 'rts','resetfiles',
                                 'download', 'comments', 'console', 'import',
                                 'fontsize', 'timeleft'];
             for (var i = 0; i < alwaysActive.length; i++) {
